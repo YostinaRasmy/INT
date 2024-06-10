@@ -81,7 +81,14 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('INT'),
+        title: const Text(
+          'INT',
+          style: TextStyle(
+            color: Colors.blueAccent,
+            fontSize: 40.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -107,7 +114,11 @@ class _MainPageState extends State<MainPage> {
           await _bluetooth.requestDisable();
         }
       },
-      tileColor: Colors.black26,
+      activeColor: Colors.white,
+      activeTrackColor: Colors.blueAccent,
+      inactiveTrackColor: Colors.white24,
+      inactiveThumbColor: Colors.white,
+      tileColor: Colors.black12,
       title: Text(
         _bluetoothState ? "Bluetooth switched on" : "Bluetooth off",
       ),
@@ -128,7 +139,13 @@ class _MainPageState extends State<MainPage> {
             )
           : TextButton(
               onPressed: _getDevices,
-              child: const Text("View devices"),
+              child: const Text(
+                ' View devices',
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ), //Text("View devices"),
             ),
     );
   }
@@ -142,7 +159,13 @@ class _MainPageState extends State<MainPage> {
                 return ListTile(
                   title: Text(device.name ?? device.address),
                   trailing: TextButton(
-                    child: const Text('connect'),
+                    child: const Text(
+                      'connect',
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: () async {
                       setState(() => _isConnecting = true);
 
@@ -165,15 +188,15 @@ class _MainPageState extends State<MainPage> {
 
   Widget _inputSerial() {
     return ListTile(
-      trailing: TextButton(
-        child: const Text('restart'),
-        onPressed: () => setState(() => times = 0),
-      ),
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+      title: Center(
+        //padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
-          "Push button pressed (x$times)",
-          style: const TextStyle(fontSize: 18.0),
+          'Welcome Home',
+          style: TextStyle(
+            color: Colors.blueAccent,
+            fontSize: 40.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -237,7 +260,7 @@ class _MainPageState extends State<MainPage> {
       case "Garden":
         return [
           ActionButton(
-            text: "Garage light on",
+            text: "Garage \nlight on",
             color: Colors.blue,
             onTap: () => _sendData("A"),
             padding:
@@ -245,13 +268,13 @@ class _MainPageState extends State<MainPage> {
           ),
           ActionButton(
             color: Colors.black26,
-            text: "Garage light off",
+            text: "Garage \nlight off",
             onTap: () => _sendData("a"),
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           ),
           ActionButton(
-            text: " Garage door open",
+            text: " Garage \ndoor open",
             color: Colors.blue,
             onTap: () => _sendData("W"),
             padding:
@@ -259,13 +282,13 @@ class _MainPageState extends State<MainPage> {
           ),
           ActionButton(
             color: Colors.black26,
-            text: "Garage door Close",
+            text: "Garage \ndoor Close",
             onTap: () => _sendData("X"),
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           ),
           ActionButton(
-            text: "Garden light on",
+            text: "Garden \nlight on",
             color: Colors.blue,
             onTap: () => _sendData("I"),
             padding:
@@ -273,7 +296,7 @@ class _MainPageState extends State<MainPage> {
           ),
           ActionButton(
             color: Colors.black26,
-            text: "Garden light off",
+            text: "Garden \nlight off",
             onTap: () => _sendData("i"),
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -319,7 +342,7 @@ class _MainPageState extends State<MainPage> {
           ActionButton(
             color: Colors.black26,
             text: "fan off",
-            onTap: () => _sendData("x"),
+            onTap: () => _sendData("y"),
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           ),
